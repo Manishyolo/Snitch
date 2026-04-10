@@ -21,5 +21,12 @@ export const validateRegisterUser = [
     body('contact').isMobilePhone('any').withMessage("Please provide a valid contact number"),
     body('password').isLength({min:6}).withMessage("Password must be at least 6 characters long"),
     body('fullname').notEmpty().isString().withMessage("Full name is required"),
+    body('role').isIn(['buyer', 'seller']).withMessage("Role must be either buyer or seller"),
+    validateRequest
+]
+
+export const validateLoginUser = [
+    body('email').isEmail().notEmpty().withMessage("Please provide a valid email or contact number"),
+    body('password').notEmpty().isLength({min:6}).withMessage("Password must be at least 6 characters long"),
     validateRequest
 ]
