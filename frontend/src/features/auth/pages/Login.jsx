@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
+import { useAuth } from '../hooks/useAuth'
 import './auth.css'
 
 const Login = () => {
@@ -8,7 +9,7 @@ const Login = () => {
   const [error, setError]       = useState('')
   const [loading, setLoading]   = useState(false)
   const navigate = useNavigate()
-
+  const { handleLogin } = useAuth()
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
@@ -20,9 +21,7 @@ const Login = () => {
 
     setLoading(true)
     try {
-      // TODO: wire up your auth service here
-      // await loginService({ email, password })
-      await new Promise(r => setTimeout(r, 900)) // placeholder
+      await handleLogin({ email, password })
       navigate('/')
     } catch (err) {
       setError(err?.message || 'Something went wrong. Please try again.')
@@ -111,7 +110,7 @@ const Login = () => {
 
             <div className="auth-social">
               <div className="auth-divider-text">OR</div>
-              <a href="#" className="google-btn">
+              <a href="/api/user/google" className="google-btn">
                 <svg className="google-icon" viewBox="0 0 24 24">
                   <path
                     fill="currentColor"
