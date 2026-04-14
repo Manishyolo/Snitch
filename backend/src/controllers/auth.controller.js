@@ -56,7 +56,7 @@ export async function LoginController(req, res) {
   try {
     const { email, password } = req.body;
 
-    const User = await userModel.findOne({ $or: [{ email }, { contact }] });
+    const User = await userModel.findOne({ email });
 
     if (!User) {
       return res.status(400).json({
