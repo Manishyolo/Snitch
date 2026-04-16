@@ -35,3 +35,19 @@ export async function createProduct(req,res){
 
 
 }
+
+export async function getSellerProducts(req,res){
+    const sellerId = req.user.id;
+    const products = await productModel.find({seller:sellerId})
+    if(products.length === 0){
+        return res.status(404).json({
+            success:false,
+            message:"No products found for this seller"
+        })
+    }
+    res.status(200).json({
+        success:true,
+        message:"Products found for this seller",
+        products
+    })
+}
