@@ -8,6 +8,7 @@ export function useProduct(){
 
     async function handleCreateProduct(formdata){
           try {
+            console.log("Creating product with data:", formdata);   
             const response = await createProduct(formdata);
             dispatch(setSellerProducts(response.products));
             return response.products

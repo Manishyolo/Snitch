@@ -1,0 +1,483 @@
+/* =============================================
+   SNITCH — Create Product: Dark Minimalist Editorial
+   Design System: Obsidian & Gold (Shadow Atelier)
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@200;300;400;500&display=swap');
+
+:root {
+  --bg:              #0d0d0d;
+  --surface:         #131313;
+  --surface-raised:  #1a1a1a;
+  --surface-high:    #222222;
+  --border-subtle:   #2a2a2a;
+  --outline:         #4e453b;
+  --gold:            #c8a97e;
+  --gold-dim:        #e2c195;
+  --text-primary:    #e5e2e1;
+  --text-muted:      #6b6560;
+  --text-faint:      #3d3935;
+  --error:           #ffb4ab;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Page Shell ────────────────────────────── */
+.cp-shell {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: var(--bg);
+  font-family: 'Inter', sans-serif;
+  overflow: hidden; /* Strict full page non-scrollable */
+}
+
+.cp-form-full {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── LEFT PANE ─────────────────────────────── */
+.cp-left-pane {
+  flex: 1.1; /* slightly wider for upload zone */
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid var(--border-subtle);
+  position: relative;
+  padding: 40px;
+}
+
+/* Subtle accent line on the left side */
+.cp-left-pane::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 0;
+  height: 80%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold) 50%, transparent);
+  opacity: 0.2;
+}
+
+/* ─── RIGHT PANE ────────────────────────────── */
+.cp-right-pane {
+  flex: 1;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* Shared Inner Restraints */
+.cp-pane-inner {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-right-inner {
+  height: 100%;
+  justify-content: center;
+}
+
+/* ─── Brand Header (Left Pane) ──────────────── */
+.cp-nav-back {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease, transform 0.2s ease;
+  align-self: flex-start;
+}
+
+.cp-nav-back:hover {
+  color: var(--gold);
+  transform: translateX(-4px);
+}
+
+.cp-brand-header {
+  margin-bottom: 40px;
+}
+
+.cp-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  color: var(--gold);
+  text-transform: uppercase;
+  line-height: 1;
+  display: block;
+  margin-bottom: 24px;
+}
+
+.cp-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.cp-subheading {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ─── Floating Label Input (Right Pane) ─────── */
+.input-group {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  outline: none;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  padding: 16px 0 10px;
+  line-height: 1.5;
+  transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  caret-color: var(--gold);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.input-group textarea {
+  resize: none;
+  min-height: 80px;
+  padding-top: 18px;
+}
+
+.input-group select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b6560' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  padding-right: 24px;
+}
+
+.input-group select option {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  border-bottom-color: var(--gold);
+}
+
+.input-group label {
+  position: absolute;
+  left: 0;
+  top: 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform 0.28s ease, color 0.28s ease;
+}
+
+/* Floating behavior */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:not(:placeholder-shown) ~ label,
+.input-group select:focus ~ label,
+.input-group select.has-value ~ label {
+  transform: translateY(-24px) scale(0.8);
+  color: var(--gold);
+  letter-spacing: 0.06em;
+}
+
+/* Underline interaction */
+.input-group::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-group:focus-within::after {
+  width: 100%;
+}
+
+.price-row {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  gap: 32px;
+}
+
+/* ─── Image Upload Zone (Left Pane) ─────────── */
+.cp-upload-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-upload-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.cp-upload-zone {
+  border: 1px dashed var(--border-subtle);
+  padding: 40px 24px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--bg);
+  gap: 12px;
+  flex-grow: 1; /* stretches gracefully */
+  min-height: 200px;
+  justify-content: center;
+}
+
+.cp-upload-zone:hover,
+.cp-upload-zone.drag-over {
+  border-color: var(--gold);
+  background: rgba(200, 169, 126, 0.04);
+}
+
+.cp-upload-zone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.cp-upload-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--text-faint);
+  transition: color 0.3s ease;
+}
+
+.cp-upload-zone:hover .cp-upload-icon,
+.cp-upload-zone.drag-over .cp-upload-icon {
+  color: var(--gold);
+}
+
+.cp-upload-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.cp-upload-title span {
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.cp-upload-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+
+/* Preview Grid */
+.cp-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cp-preview-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--surface-raised);
+}
+
+.cp-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.cp-preview-item:hover img {
+  transform: scale(1.05);
+}
+
+.cp-preview-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  background: rgba(13, 13, 13, 0.9);
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  line-height: 1;
+}
+
+.cp-preview-item:hover .cp-preview-remove {
+  opacity: 1;
+}
+
+.cp-preview-remove:hover {
+  color: var(--error);
+}
+
+.cp-preview-counter {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  text-align: right;
+  margin-top: 12px;
+}
+
+.cp-preview-counter span {
+  color: var(--gold);
+}
+
+/* ─── Submit Area (Right Pane) ──────────────── */
+.cp-submit-area {
+  margin-top: 24px;
+  width: 100%;
+}
+
+.cp-error {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--error);
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+  padding-left: 2px;
+}
+
+.cp-btn {
+  width: 100%;
+  background: var(--gold);
+  color: #0a0a0a;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 18px 32px;
+  cursor: pointer;
+  position: relative;
+  transition: opacity 0.25s, transform 0.18s;
+  margin-bottom: 24px;
+}
+
+.cp-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.cp-btn:active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cp-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cp-back-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.cp-back-link:hover {
+  color: var(--gold);
+}
+
+/* ─── Responsive Adjustments ────────────────── */
+@media (max-width: 900px) {
+  .cp-shell {
+    height: auto;
+    overflow-y: auto;
+  }
+  .cp-form-full {
+    flex-direction: column;
+  }
+  .cp-left-pane, .cp-right-pane {
+    border: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .cp-left-pane::before {
+    display: none;
+  }
+  .cp-pane-inner {
+    max-width: 100%;
+  }
+}
