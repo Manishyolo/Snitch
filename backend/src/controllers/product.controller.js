@@ -5,9 +5,8 @@ import { uploadFile } from "../services/storage.service.js";
 
 export async function createProduct(req,res){
        const {title,description,priceAmount,priceCurrency} = req.body;
-       console.log("Received product creation request with data:", req.body);
+       console.log(title,description,priceAmount,priceCurrency);
        const sellerId = req.user.id;
-       console.log(req.files);
        const images = await Promise.all(
        req.files.map(async (file) => {
              return await uploadFile({buffer:file.buffer,
@@ -20,7 +19,7 @@ export async function createProduct(req,res){
     title,
     description,
     price:{
-        amount:priceAmount,
+        amount:Number(priceAmount),
         currency:priceCurrency
         },
         seller:sellerId,

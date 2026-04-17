@@ -89,8 +89,8 @@ const CreateProduct = () => {
       const data = new FormData()
       data.append('title',       title.trim())
       data.append('description', description.trim())
-      data.append('price',       price)
-      data.append('currency',    currency)
+      data.append('priceAmount',       price)
+      data.append('priceCurrency',    currency)
       images.forEach(img => data.append('images', img.file))
 
       for (let pair of data.entries()) {
