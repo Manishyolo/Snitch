@@ -1,0 +1,514 @@
+/* =============================================
+   SNITCH — Seller Dashboard v2
+   Design System: Shadow Atelier (Obsidian & Gold)
+   New: Sticky Navbar + Stats Row + 3-Col Grid
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap');
+
+/* ─── Tokens ─────────────────────────────────── */
+:root {
+  --bg:              #0a0a0a;
+  --surface:         #131313;
+  --surface-raised:  #1a1a1a;
+  --surface-high:    #2a2a2a;
+  --outline-subtle:  rgba(78, 69, 59, 0.22);
+  --gold:            #c8a97e;
+  --gold-dim:        #e2c195;
+  --text-primary:    #e5e2e1;
+  --text-muted:      #6b6560;
+  --text-variant:    #d1c5b7;
+  --error:           #ffb4ab;
+  --serif:           'Cormorant Garamond', Georgia, serif;
+  --sans:            'Inter', system-ui, sans-serif;
+  --nav-h:           64px;
+}
+
+/* ─── Reset ──────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── Body base ──────────────────────────────── */
+.db-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--sans);
+}
+
+/* ═══════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════ */
+.db-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-h);
+  width: 100%;
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid var(--outline-subtle);
+  display: flex;
+  align-items: center;
+}
+
+.db-nav-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* Wordmark */
+.db-nav-logo {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* Center nav links */
+.db-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+
+.db-nav-link {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.25s ease;
+}
+
+.db-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 0.5px;
+  background: var(--gold);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.db-nav-link:hover,
+.db-nav-link--active {
+  color: var(--gold);
+}
+
+.db-nav-link--active::after,
+.db-nav-link:hover::after {
+  width: 100%;
+}
+
+/* Avatar */
+.db-nav-avatar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.db-nav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--text-variant);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.db-nav-avatar:hover {
+  background: var(--surface-high);
+}
+
+/* Gold online dot */
+.db-nav-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 1.5px solid var(--bg);
+}
+
+/* ═══════════════════════════════════════════════
+   MAIN BODY
+═══════════════════════════════════════════════ */
+.db-body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 56px 48px 120px;
+}
+
+/* ─── Page Heading ───────────────────────────── */
+.db-heading-row {
+  margin-bottom: 48px;
+}
+
+.db-page-title {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.db-page-sub {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* ─── Stats Row ──────────────────────────────── */
+.db-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px; /* thin gap creates a tonal divider effect */
+  margin-bottom: 64px;
+}
+
+.db-stat {
+  background: var(--surface-raised);
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Zero radius — sharp edges */
+  border-radius: 0;
+  transition: background 0.25s ease;
+}
+
+.db-stat:hover {
+  background: var(--surface-high);
+}
+
+.db-stat-value {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.db-stat-value--gold {
+  color: var(--gold);
+}
+
+.db-stat-label {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ─── Section Bar ────────────────────────────── */
+.db-section-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.db-section-label {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.db-new-btn {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.db-new-btn:hover {
+  opacity: 0.55;
+}
+
+/* ─── Error Banner ───────────────────────────── */
+.db-error {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--error);
+  letter-spacing: 0.03em;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/* ═══════════════════════════════════════════════
+   PRODUCT GRID — 3 columns
+═══════════════════════════════════════════════ */
+.db-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* ─── Product Card ───────────────────────────── */
+.db-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  cursor: pointer;
+}
+
+/* Square image */
+.db-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--surface);
+  overflow: hidden;
+  position: relative;
+}
+
+.db-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+              opacity 0.5s ease;
+}
+
+.db-card:hover .db-card-img {
+  transform: scale(1.04);
+}
+
+/* No-image placeholder */
+.db-card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+}
+
+.db-card-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.2;
+}
+
+.db-card-placeholder-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--text-muted);
+}
+
+.db-card-placeholder-text {
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Gold underline reveal on hover */
+.db-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.db-card-info::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0.5px;
+  background: var(--gold);
+  transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
+}
+
+.db-card:hover .db-card-info::after {
+  width: 45%;
+}
+
+.db-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.db-card-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.db-card-price {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ─── Empty State ────────────────────────────── */
+.db-empty {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.db-empty-text {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.db-empty-sub {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════
+   SKELETON LOADING
+═══════════════════════════════════════════════ */
+.db-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.db-skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.db-skeleton-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--surface);
+  animation: db-pulse 2s ease-in-out infinite;
+}
+
+.db-skeleton-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.db-skeleton-name {
+  height: 13px;
+  width: 55%;
+  background: var(--surface-raised);
+  animation: db-pulse 2s ease-in-out infinite;
+  animation-delay: 0.12s;
+}
+
+.db-skeleton-price {
+  height: 11px;
+  width: 22%;
+  background: var(--surface-raised);
+  animation: db-pulse 2s ease-in-out infinite;
+  animation-delay: 0.24s;
+}
+
+@keyframes db-pulse {
+  0%   { opacity: 0.25; }
+  50%  { opacity: 0.65; }
+  100% { opacity: 0.25; }
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 1024px) {
+  .db-grid,
+  .db-skeleton-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .db-nav-inner  { padding: 0 20px; }
+  .db-nav-links  { display: none; }
+  .db-body       { padding: 40px 20px 100px; }
+  .db-stats      { grid-template-columns: 1fr; gap: 2px; }
+  .db-grid,
+  .db-skeleton-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .db-page-title { font-size: 1.9rem; }
+}
+
+@media (max-width: 440px) {
+  .db-grid,
+  .db-skeleton-grid { grid-template-columns: 1fr; }
+}
